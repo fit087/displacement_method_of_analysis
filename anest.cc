@@ -1,7 +1,9 @@
 #include<iostream>
 #include<vector>
+#include <armadillo>
 
 using namespace std;
+using namespace arma;
 
 void preparq(int, int, int, int, int);
 // void nos(int nno, int nnv, vector<double> x);
@@ -10,7 +12,10 @@ void nos(int nno, int nnv, vector<double> x, \
 vector<double> y, vector<vector<double>> fa, \
 vector<vector<int>> d, vector<vector<int>> v, \
 vector<int> nv, int gln);
-int main(void)
+
+void testing_armadillo(void);
+
+int main(int argc, char* argv[])
 {
 	int nno, nel, ngl, nnv, gln, nelt, nelp, \
 	nll, ntc = nno = nel = ngl = nnv = gln = nelt \
@@ -57,7 +62,7 @@ int main(void)
 	nos(nno, nnv, x, y, fa, d, v, nv, gln);
 	
 	
-	
+	testing_armadillo();
 
 	
 
@@ -76,3 +81,18 @@ vector<int> nv, int gln)
 {
 	cout<<"Reading nos"<<endl;
 } 
+
+void testing_armadillo(void)
+{
+	cout<<endl<<"Testing armadillo::mat"<<endl<<endl;
+
+	mat A(4, 5, fill::randu);
+	mat B(4, 5, fill::randn);
+
+	cout<<"A = "<<A<<endl;
+	cout<<"B = "<<B<<endl;
+	
+	cout<<"A*B.t() = "<<A*B.t()<<endl;
+
+}
+
