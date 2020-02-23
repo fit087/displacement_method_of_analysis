@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+
+# Ignore Files without extensions
+## Ignore all
+*
+
+## Unignore all with extensions
+!*.*
+
+## Unignore all dirs
+!*/
+
+## Unignore Makefile
+!makefile
