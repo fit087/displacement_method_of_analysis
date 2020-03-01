@@ -1,6 +1,6 @@
 # Displacement Method of Analysis
 
-This project will contain a program to perform a analysis of statically indeterminate structures.
+This project will contain a C++ program to perform a analysis of statically indeterminate structures.
 
 We have two distinct method of analysis for statically indeterminate structure depending upon how the above equations are satisfied: 
 1.  Force method of analysis (also known as flexibility method of analysis, method of consistent deformation, flexibility matrix method);
