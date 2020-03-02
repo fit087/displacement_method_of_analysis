@@ -1,3 +1,12 @@
+/**
+    anest.cc
+    Purpose: Perform the Displacement Method of Analysis
+    for structural analysis.
+
+    @author Adolfo Correa
+    @version 0.1 02/03/20
+*/
+
 #include<iostream>
 #include<vector>
 #include <armadillo>
@@ -23,20 +32,22 @@ int main(int argc, char* argv[])
 
 	vector<int> nv, te, nc;
 
-	// Vector 2D
+	/// Vector 2D
 	vector<vector<int>> no, g, v, d, il;
 	vector<double> x, y, e, a, iz, ra, fp, f, u, \
 	qx, qy;
-	// Vector 2D
+	/// Vector 2D
 	vector<vector<double>> fa, sg, esf;
 
-// Read input files
-
+/// Read input files
 	preparq(nno, nel, ntc, ngl, gln);
 
 // Dimensionar vetores e matrizes
 // matrix.resize(M, vector<int>(N, default_value));
 
+/**
+* \brief Initialize the variables
+*/
 	d.resize(nno, vector<int>(gln, 0));
 	v.resize(nno, vector<int>(gln, 0));
 	no.resize(2, vector<int>(nel, 0));
@@ -61,7 +72,7 @@ int main(int argc, char* argv[])
 //	nos(nno, nnv, x);
 	nos(nno, nnv, x, y, fa, d, v, nv, gln);
 	
-	
+	/// Testing Armadillo library
 	testing_armadillo();
 
 	
@@ -74,6 +85,15 @@ void preparq(int nno, int nel, int ntc, int ngl, int gln)
 	cout<<"Reading input files"<<endl;
 }
 
+/**
+ * Read the nodes coordinates of the structure from
+ * the input file.
+ *
+ * @param[in] nno number of nodes
+ * @param[in] gln degree of freedom per node
+ * @param[out] x x-coordinates of the nodes
+ * @param[out] y y-coordinates of the nodes
+ */
 void nos(int nno, int nnv, vector<double> x, \
 vector<double> y, vector<vector<double>> fa, \
 vector<vector<int>> d, vector<vector<int>> v, \
@@ -82,17 +102,29 @@ vector<int> nv, int gln)
 	cout<<"Reading nos"<<endl;
 } 
 
+/**
+ * Create two matrices with random values 
+ * and multiply them
+ *
+ * @param void.
+ * @return none, only print on the screen.
+ */
 void testing_armadillo(void)
 {
 	cout<<endl<<"Testing armadillo::mat"<<endl<<endl;
 
-	mat A(4, 5, fill::randu);
-	mat B(4, 5, fill::randn);
+	mat A(4, 5, fill::randu); ///< matrix A filled with random unsigned integers
+	mat B(4, 5, fill::randn); ///< matrix B filled with randoms integers
 
 	cout<<"A = "<<A<<endl;
 	cout<<"B = "<<B<<endl;
-	
-	cout<<"A*B.t() = "<<A*B.t()<<endl;
+
+	/**
+	  \f[
+  	    C = A \cross B^T
+	  \f]
+	*/
+	cout<<"A*B.t() = "<<A*B.t()<<endl; ///< Plot the product of the two matrices
 
 }
 
