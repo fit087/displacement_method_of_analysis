@@ -10,6 +10,8 @@
 #include<iostream>
 #include<vector>
 #include <armadillo>
+#include <fstream>
+#include <string>
 
 using namespace std;
 using namespace arma;
@@ -41,6 +43,8 @@ int main(int argc, char* argv[])
 
 /// Read input files
 	preparq(nno, nel, ntc, ngl, gln);
+
+	nno = nel = 4; ntc = 3; gln = 3; ngl = gln * nno;
 
 // Dimensionar vetores e matrizes
 // matrix.resize(M, vector<int>(N, default_value));
@@ -83,6 +87,24 @@ int main(int argc, char* argv[])
 void preparq(int nno, int nel, int ntc, int ngl, int gln)
 {
 	cout<<"Reading input files"<<endl;
+	ifstream file;
+	ofstream auxFile;
+	string line, filename = "exemplo";
+	file.open(filename);
+	auxFile.open("anest.dat");
+
+	// Read lines of input file
+	for(int i = 0; !file.eof(); i++)
+	{
+		//file.get(line);	
+		getline(file, line);
+		cout<<line<<endl;
+		if(line.substr(0,1) != ";") auxFile<<line<<endl;
+	}
+
+	file.close();
+	auxFile.close();
+
 }
 
 /**
